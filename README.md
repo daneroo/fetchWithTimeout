@@ -12,6 +12,14 @@ It was meant to reproduce a bug in [bun's](https://bun.sh/) `fetch` implementati
 
 ## Demonstration
 
+You can try it out yourself by opening this repo in Codespaces.
+(`node`,`deno`, and `bun` will already installed), and then
+just run the `runAll.sh` script.
+
+```bash
+./runAll.sh -vvv -n 3
+```
+
 We see here that the `fetch` with `AbortController` is not working as expected in `bun`.
 It is however working as expected in `node` and `deno`.
 
