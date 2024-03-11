@@ -10,6 +10,49 @@ It was meant to reproduce a bug in [bun's](https://bun.sh/) `fetch` implementati
   - with a timeout based on Promise.race
   - with a timeout based on AbortController
 
+## Demonstration
+
+We see here that the `fetch` with `AbortController` is not working as expected in `bun`.
+It is however working as expected in `node` and `deno`.
+
+```bash
+ ./runAll.sh -n 10 -v
+---------------------------------
+Running with node...
+---------------------------------
+Running fetch with 10 iterations
+
+- usingRegularFetch x 10 times
+- usingAbortController x 10 times
+- usingPromiseRace x 10 times
+---------------------------------
+Running with bun...
+---------------------------------
+Running fetch with 10 iterations
+
+- usingRegularFetch x 10 times
+- usingAbortController x 10 times
+    Took too long: 1170ms > timeout:500ms + gracePeriod:200ms
+    Took too long: 1530ms > timeout:500ms + gracePeriod:200ms
+    Took too long: 1375ms > timeout:500ms + gracePeriod:200ms
+    Took too long: 1574ms > timeout:500ms + gracePeriod:200ms
+    Took too long: 1349ms > timeout:500ms + gracePeriod:200ms
+    Took too long: 1082ms > timeout:500ms + gracePeriod:200ms
+    Took too long: 1369ms > timeout:500ms + gracePeriod:200ms
+    Took too long: 1086ms > timeout:500ms + gracePeriod:200ms
+    Took too long: 1086ms > timeout:500ms + gracePeriod:200ms
+    Took too long: 1354ms > timeout:500ms + gracePeriod:200ms
+- usingPromiseRace x 10 times
+---------------------------------
+Running with deno...
+---------------------------------
+Running fetch with 10 iterations
+
+- usingRegularFetch x 10 times
+- usingAbortController x 10 times
+- usingPromiseRace x 10 times
+```
+
 ## AbortController and `fetch`
 
 This is the basic idea:
